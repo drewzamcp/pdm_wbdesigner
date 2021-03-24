@@ -1,13 +1,13 @@
 #! user/env/python
 from PIL import Image, ImageOps
-from pdm_project_one import image
+from pdm_project_one import image_tools
 
 
 def main():  # sourcery skip: inline-immediately-returned-variable
-    bw_img = wristband_image(
+    transparent_img = wristband_image(
         "/Users/drewmac/webdev/pdm-project1/image_folder/raw/Northern Farm.jpg"
     )
-    return bw_img
+    return transparent_img
 
 
 def wristband_image(img_path):
@@ -18,17 +18,15 @@ def wristband_image(img_path):
     # upload image in supported format (*.png, *.jpg, *.pdf)
     # convert the image to black and white bitmap
     # remove background
+    transparent_image = image_tools.get_transparent_image(img_path)
     # resize to fit wristand
     # return processed image
-    bw_img = image.create_bw_image(img_path)
-    new_img = cImage.open(bw_img)
-    new_img = new_img.convert("RGBA")
     # img = img.convert("RGBA")
 
     # _bw_img = get_bw_image(img=img)
     # cropped_img = remove_white_background(bw_img=_bw_img)
 
-    return new_img
+    return transparent_image
 
 
 # def get_bw_image(img):

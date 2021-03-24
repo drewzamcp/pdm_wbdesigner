@@ -7,6 +7,7 @@ authors = ["Andrew McPhail <andrew@studiofriday.co.za>"]
 [tool.poetry.dependencies]
 python = "^3.9"
 Pillow = "^8.1.2"
+jupyter = "^1.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
