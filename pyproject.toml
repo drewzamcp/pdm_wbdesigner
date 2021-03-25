@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pdm_project_one"
 version = "0.1.0"
-description = ""
+description = "Wristband Designer"
 authors = ["Andrew McPhail <andrew@studiofriday.co.za>"]
 
 [tool.poetry.dependencies]
