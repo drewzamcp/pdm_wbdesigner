@@ -4,6 +4,8 @@ import datetime as dt
 
 COLOR_THRESHOLD = 180
 FILE_DATE = dt.datetime.now().isoformat("-", "auto")
+MAX_HEIGHT = 71.8
+MAX_WIDTH = 720
 
 
 def get_transparent_image(imagefile):
@@ -30,11 +32,10 @@ def get_transparent_image(imagefile):
 
 
 def add_text_image(image: Image, text: str):
-    
-    base_layer = Image.new("RGBA", (720, 72), (255,255,255,0))
-    base_img = image.convert('RGBA')
-    txt_img = Image.new("RGBA", )
-    font = ImageFont.truetype('Montserrat-Medium.ttf', 18)
 
-
-
+    base_layer = Image.new("RGBA", (MAX_HEIGHT, MAX_WIDTH), (255, 255, 255, 0))
+    base_img = image.convert("RGBA")
+    txt_img = Image.new(
+        "RGBA",
+    )
+    font = ImageFont.truetype("Montserrat-Medium.ttf", 18)

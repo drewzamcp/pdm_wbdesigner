@@ -2,6 +2,8 @@
 from PIL import Image, ImageOps
 from pdm_project_one import image_tools
 
+MAX_HEIGHT = 72  # measured in pixels
+
 
 def main():  # sourcery skip: inline-immediately-returned-variable
     transparent_img = wristband_image(
