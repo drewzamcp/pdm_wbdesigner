@@ -51,6 +51,10 @@ coverage.xml
 *.cover
 .hypothesis/
 
+# Pytest
+
+.pytest_cache/
+
 # Translations
 *.mo
 *.pot
