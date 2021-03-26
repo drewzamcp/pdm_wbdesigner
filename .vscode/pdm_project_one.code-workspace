@@ -5,6 +5,6 @@
 		}
 	],
 	"settings": {
-		"python.venvPath": "/Users/drewmac/Library/Caches/pypoetry/virtualenvs",
+		"python.venvPath": "~/Library/Caches/pypoetry/virtualenvs",
 	}
 }
