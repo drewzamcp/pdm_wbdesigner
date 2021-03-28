@@ -10,8 +10,7 @@ Stay posted for more updates
 
 ## Installation
 
-''' python
-
+`
 poetry install wbdesigner 
 
-'''
+`
