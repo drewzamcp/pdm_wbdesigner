@@ -10,7 +10,5 @@ Stay posted for more updates
 
 ## Installation
 
-`
-poetry install wbdesigner 
 
-`
+`poetry install wbdesigner`
