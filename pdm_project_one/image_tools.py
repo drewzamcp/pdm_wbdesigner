@@ -40,7 +40,7 @@ def add_text_image(image: Image, text: str):
     base_img.thumbnail(MAX_SIZE)
     base_layer.alpha_composite(base_img)
     fnt = ImageFont.truetype(
-        "/Users/drewmac/webdev/pdm_project_one/fonts/Poppins-Medium.ttf", 32
+        "/Users/drewmac/webdev/pdm_project_one/fonts/Poppins-Medium.ttf", 22
     )
 
     d = ImageDraw.Draw(base_layer)
