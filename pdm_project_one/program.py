@@ -1,11 +1,20 @@
 #! user/env/python
+import sys
+from pathlib import Path
+
 from pdm_project_one import image_tools
 
 
 def main():  # sourcery skip: inline-immediately-returned-variable
-    text_input = str(input("Enter text for wristband: "))
+    text_input = input("Enter text for wristband: ")
+    img_url_input = input("Enter path to image: ")
+
+    if not Path(img_url_input).exists():
+        print(f"Cannot find {img_url_input}")
+        sys.exit(1)
+
     transparent_img = wristband_image(
-        "/Users/drewmac/webdev/pdm-project1/image_folder/raw/Northern Farm.jpg",
+        img_url_input,
         text_input,
     )
     return transparent_img
