@@ -2,10 +2,13 @@
 from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
 
-COLOR_THRESHOLD = 180
+COLOR_THRESHOLD = 200
 FILE_DATE = dt.datetime.now().isoformat("-", "auto")
-MAX_HEIGHT = 72
+MAX_HEIGHT = 51
 MAX_WIDTH = 720
+MAX_SIZE = (MAX_WIDTH, MAX_HEIGHT)
+
+TMP_FOLDER = "/Users/drewmac/webdev/pdm_project_one/tmp_img_folder"
 
 
 def get_transparent_image(imagefile):
@@ -22,29 +25,33 @@ def get_transparent_image(imagefile):
             row = (0, 0, 0, 255)
         new_data.append(row)
 
-    output_path = "/Users/drewmac/webdev/pdm-project1/image_folder/processed/"
-    outfile_name = f"processed_{FILE_DATE}_transparent.png"
+    outfile_name = f"{TMP_FOLDER}/tmp_transparent.png"
 
     rgba.putdata(new_data)
-    rgba.save(f"{output_path}{outfile_name}", "PNG")
+    rgba.save(f"{outfile_name}", "PNG", quality=2)
 
     return rgba
 
 
 def add_text_image(image: Image, text: str):
 
-    base_layer = Image.new("RGBA", (MAX_HEIGHT, MAX_WIDTH), (255, 255, 255, 0))
-    base_img = image.convert("RGBA").resize()
-    fnt = ImageFont.truetype("Montserrat-Medium.ttf", 18)
-
-    base_img_width, base_img_height = base_img.size
-
-    img_obj = ImageDraw.Draw(base_img)
-    img_obj.text(
-        (base_img_width + 5, base_img_height / 2),
-        text=text,
-        font=fnt,
-        fill=(0, 0, 0, 0),
+    base_layer = Image.new("RGBA", (MAX_WIDTH, MAX_HEIGHT), (255, 255, 255, 0))
+    base_img = image.copy()
+    base_img.thumbnail(MAX_SIZE)
+    base_layer.alpha_composite(base_img)
+    fnt = ImageFont.truetype(
+        "/Users/drewmac/webdev/pdm_project_one/fonts/Poppins-Medium.ttf", 22
     )
 
-    return base_img
+    d = ImageDraw.Draw(base_layer)
+    d.text(
+        (base_img.width + 5, base_layer.height / 2),
+        text=text,
+        font=fnt,
+        fill=(0, 0, 0, 255),
+        anchor="lm",
+    )
+
+    base_layer.save(f"{TMP_FOLDER}/tmp_joined.png")
+
+    return base_layer
