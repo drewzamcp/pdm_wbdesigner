@@ -8,7 +8,7 @@ MAX_HEIGHT = 51
 MAX_WIDTH = 720
 MAX_SIZE = (MAX_WIDTH, MAX_HEIGHT)
 
-TMP_FOLDER = "/Users/drewmac/webdev/pdm_project_one/tmp_img_folder"
+TMP_FOLDER = "tmp_img_folder"
 
 
 def get_transparent_image(imagefile):
@@ -39,9 +39,7 @@ def add_text_image(image: Image, text: str):
     base_img = image.copy()
     base_img.thumbnail(MAX_SIZE)
     base_layer.alpha_composite(base_img)
-    fnt = ImageFont.truetype(
-        "/Users/drewmac/webdev/pdm_project_one/fonts/Poppins-Medium.ttf", 22
-    )
+    fnt = ImageFont.truetype("fonts/Poppins-Medium.ttf", 22)
 
     d = ImageDraw.Draw(base_layer)
     d.text(

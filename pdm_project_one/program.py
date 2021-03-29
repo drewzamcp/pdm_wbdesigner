@@ -10,13 +10,15 @@ def main():  # sourcery skip: inline-immediately-returned-variable
     img_url_input = input("Enter path to image: ")
 
     if not Path(img_url_input).exists():
-        print(f"Cannot find {img_url_input}")
+        print(f"Cannot find file path: {img_url_input}")
         sys.exit(1)
 
     transparent_img = wristband_image(
         img_url_input,
         text_input,
     )
+
+    print(f"{transparent_img} created")
     return transparent_img
 
 
