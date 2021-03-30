@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../pdm-project1/image_folder"
+		}
+	],
+	"settings": {}
+}
