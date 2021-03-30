@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pdm_project_one"
 version = "0.1.0"
-description = ""
+description = "Wristband Designer"
 authors = ["Andrew McPhail <andrew@studiofriday.co.za>"]
 
 [tool.poetry.dependencies]
@@ -17,3 +17,6 @@ flake8 = "^3.9.0"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+wbimg = "pdm_project_one.program:main"
