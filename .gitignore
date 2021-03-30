@@ -108,3 +108,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+**.DS_Store
+**.swp
+**__pycache__
+
+tmp_img_folder
