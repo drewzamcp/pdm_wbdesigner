@@ -1,14 +1,18 @@
 #!/usr/bin/env python
-from PIL import Image, ImageDraw, ImageFont
 import datetime as dt
+
+from PIL import Image, ImageDraw, ImageFont
+
+from pdm_project_one.settings import (
+    IMG_OUTPUT_FLDR,
+    FONT_FOLDER,
+)
 
 COLOR_THRESHOLD = 200
 FILE_DATE = dt.datetime.now().isoformat("-", "auto")
 MAX_HEIGHT = 51
 MAX_WIDTH = 720
 MAX_SIZE = (MAX_WIDTH, MAX_HEIGHT)
-
-TMP_FOLDER = "tmp_img_folder"
 
 
 def get_transparent_image(imagefile):
@@ -25,7 +29,7 @@ def get_transparent_image(imagefile):
             row = (0, 0, 0, 255)
         new_data.append(row)
 
-    outfile_name = f"{TMP_FOLDER}/tmp_transparent.png"
+    outfile_name = f"{IMG_OUTPUT_FLDR}/tmp_transparent.png"
 
     rgba.putdata(new_data)
     rgba.save(f"{outfile_name}", "PNG", quality=2)
@@ -39,7 +43,7 @@ def add_text_image(image: Image, text: str):
     base_img = image.copy()
     base_img.thumbnail(MAX_SIZE)
     base_layer.alpha_composite(base_img)
-    fnt = ImageFont.truetype("fonts/Poppins-Medium.ttf", 22)
+    fnt = ImageFont.truetype(f"{FONT_FOLDER}/Poppins-Medium.ttf", 22)
 
     d = ImageDraw.Draw(base_layer)
     d.text(
@@ -50,6 +54,6 @@ def add_text_image(image: Image, text: str):
         anchor="lm",
     )
 
-    base_layer.save(f"{TMP_FOLDER}/tmp_joined.png")
+    base_layer.save(f"{IMG_OUTPUT_FLDR}/tmp_joined.png")
 
     return base_layer

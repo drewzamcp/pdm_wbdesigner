@@ -113,4 +113,5 @@ ENV/
 **.swp
 **__pycache__
 
-tmp_img_folder
+# development folders
+dev_*/
