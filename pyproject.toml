@@ -8,11 +8,16 @@ authors = ["Andrew McPhail <andrew@studiofriday.co.za>"]
 python = "^3.9"
 Pillow = "^8.1.2"
 jupyter = "^1.0.0"
+python-decouple = "^3.4"
+fastapi = "^0.63.0"
+uvicorn = "^0.13.4"
+Chameleon = "^3.9.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
 black = "^20.8b1"
 flake8 = "^3.9.0"
+rope = "^0.18.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -20,3 +25,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 wbimg = "pdm_project_one.program:main"
+fastrun = "entrypoints.main:main"
