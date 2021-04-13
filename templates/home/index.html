@@ -10,6 +10,8 @@
     
     <h1>Wristband Designer</h1>
 
+    <div tal:content="'hello world'.upper()"/>
+
     <div>User: Welcome <b>${user_name}</b>. Lets get designing</div>
 
     <ul>
@@ -17,7 +19,11 @@
         <li>Input your text</li>
         <li>layout your wristband</li>
     </ul>
-
+    <p tal:define="mytitle 'Fancy New Title'"/>
+    <ul tal:switch="len(mytitle) % 2">
+        <li tal:case="True">odd</li>
+        <li tal:case="False">even</li>
+    </ul>
 
 </body>
 </html>
