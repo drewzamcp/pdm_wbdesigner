@@ -1,15 +1,17 @@
 import fastapi
 import fastapi_chameleon
 import uvicorn
+
 from pdm_project_one.settings import TEMPLATE_FLDR
 
-from views import account, designer, home
+from pdm_project_one import views
 
 app = fastapi.FastAPI()
 
 
 def main():
     uvicorn.run(app)
+    configure()
 
 
 def configure():
@@ -18,9 +20,8 @@ def configure():
 
 
 def configure_routes():
-    app.include_router(home.router)
-    app.include_router(account.router)
-    app.include_router(designer.router)
+    app.include_router(views.home.router)
+    app.include_router(views.designer.router)
 
 
 def configure_templates():
@@ -29,5 +30,3 @@ def configure_templates():
 
 if __name__ == "__main__":
     main()
-else:
-    configure()

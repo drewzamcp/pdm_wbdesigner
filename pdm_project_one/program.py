@@ -31,7 +31,7 @@ def wristband_image(img_path, input_text: str):
     # convert the image to black and white bitmap
     # remove background
     transparent_image = image_tools.get_transparent_image(img_path)
-    # resize to fit wristand
+    # resize to fit wristband
 
     return image_tools.add_text_image(transparent_image, input_text)
 
