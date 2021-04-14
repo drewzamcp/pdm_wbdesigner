@@ -1,14 +1,12 @@
 import fastapi
 import fastapi_chameleon
 import uvicorn
-from fastapi.staticfiles import StaticFiles
+from starlette.staticfiles import StaticFiles
 
 from pdm_project_one.settings import TEMPLATE_FLDR, STATIC_FLDR
-
-from views import home, designer
+from views import router
 
 app = fastapi.FastAPI()
-# app.mount(STATIC_FLDR, StaticFiles(directory="static"), name="static")
 
 
 def main():
@@ -17,13 +15,13 @@ def main():
 
 
 def configure():
+    app.mount("/static", StaticFiles(directory=STATIC_FLDR), name="static")
     configure_routes()
     configure_templates()
 
 
 def configure_routes():
-    app.include_router(home.router)
-    app.include_router(designer.router)
+    app.include_router(router)
 
 
 def configure_templates():

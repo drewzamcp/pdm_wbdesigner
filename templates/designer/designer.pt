@@ -1,0 +1,12 @@
+<div metal:use-macro="load: ../shared/_layout.pt">
+    <div metal:fill-slot="content" tal:omit-tag="True">
+
+        <h1>Wristband Designer</h1>
+
+        <form action="POST">
+            <input type="text" name="Input WB Text">
+        </form>
+
+    </div>
+
+</div>

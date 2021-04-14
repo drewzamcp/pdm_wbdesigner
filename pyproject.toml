@@ -12,6 +12,8 @@ python-decouple = "^3.4"
 fastapi = "^0.63.0"
 uvicorn = "^0.13.4"
 Chameleon = "^3.9.0"
+aiofiles = "^0.6.0"
+python-multipart = "^0.0.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
@@ -25,4 +27,4 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
 wbimg = "pdm_project_one.program:main"
-fastrun = "entrypoints.main:main"
+fastrun = "pdm_project_one.api.main:main"
