@@ -7,7 +7,7 @@ from pdm_project_one.settings import (
     IMG_OUTPUT_FLDR,
     FONT_FOLDER,
 )
-2
+
 COLOR_THRESHOLD = 200
 FILE_DATE = dt.datetime.now().isoformat("-", "auto")
 MAX_HEIGHT = 51

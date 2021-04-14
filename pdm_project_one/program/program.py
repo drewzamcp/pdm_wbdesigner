@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-from pdm_project_one import image_tools
+from program import imgtools
 
 
 def main():  # sourcery skip: inline-immediately-returned-variable
@@ -30,10 +30,10 @@ def wristband_image(img_path, input_text: str):
     # upload image in supported format (*.png, *.jpg, *.pdf)
     # convert the image to black and white bitmap
     # remove background
-    transparent_image = image_tools.get_transparent_image(img_path)
+    transparent_image = imgtools.get_transparent_image(img_path)
     # resize to fit wristband
 
-    return image_tools.add_text_image(transparent_image, input_text)
+    return imgtools.add_text_image(transparent_image, input_text)
 
 
 if __name__ == "__main__":
