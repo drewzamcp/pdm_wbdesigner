@@ -1,27 +1,29 @@
 import fastapi
 import fastapi_chameleon
 import uvicorn
+from fastapi.staticfiles import StaticFiles
 
-from pdm_project_one.settings import TEMPLATE_FLDR
+from pdm_project_one.settings import TEMPLATE_FLDR, STATIC_FLDR
 
-from pdm_project_one import views
+from views import home, designer
 
 app = fastapi.FastAPI()
+# app.mount(STATIC_FLDR, StaticFiles(directory="static"), name="static")
 
 
 def main():
-    uvicorn.run(app)
     configure()
+    uvicorn.run(app)
 
 
 def configure():
-    configure_templates()
     configure_routes()
+    configure_templates()
 
 
 def configure_routes():
-    app.include_router(views.home.router)
-    app.include_router(views.designer.router)
+    app.include_router(home.router)
+    app.include_router(designer.router)
 
 
 def configure_templates():
