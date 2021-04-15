@@ -1,7 +1,15 @@
-import fastapi
+from fastapi import APIRouter, File, UploadFile, Form
+from pydantic import BaseModel
 from fastapi_chameleon import template
 
-router = fastapi.APIRouter()
+from pdm_project_one.program.program import create_artwork
+
+
+router = APIRouter()
+
+
+class ImageFile(BaseModel):
+    file: UploadFile = File(...)
 
 
 @router.get("/")
@@ -14,3 +22,10 @@ def index(user: str = "anon"):
 @template(template_file="designer/designer.pt")
 def designer():
     return {}
+
+
+@router.post("/designer/output")
+@template(template_file="designer/output.pt")
+def designer_output(file: ImageFile, text: str = ""):
+    artwork = create_artwork(file, text)
+    return artwork
