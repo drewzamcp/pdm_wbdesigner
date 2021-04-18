@@ -2,12 +2,12 @@
 import sys
 from pathlib import Path
 
-from program import imgtools
+from library import imgtools
 
 
-def main():  # sourcery skip: inline-immediately-returned-variable
-    text_input = input("Enter text for wristband: ")
-    img_url_input = input("Enter path to image: ")
+def create_artwork(text_input: str, img_url_input: Path):  # sourcery skip: inline-immediately-returned-variable
+    # text_input = input("Enter text for wristband: ")
+    # img_url_input = input("Enter path to image: ")
 
     if not Path(img_url_input).exists():
         print(f"Cannot find file path: {img_url_input}")
@@ -36,5 +36,5 @@ def wristband_image(img_path, input_text: str):
     return imgtools.add_text_image(transparent_image, input_text)
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
