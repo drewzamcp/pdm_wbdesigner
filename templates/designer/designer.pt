@@ -31,7 +31,6 @@
                            name="upload-file"
                            class="form-control-file col-sm-10"
                            id="wristbandImage"
-                           value="${ upload-file }"
                            accept="image/jpeg, image/png"
                     >
                 </div>
