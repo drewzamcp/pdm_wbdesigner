@@ -1,15 +1,15 @@
-from fastapi import APIRouter, File, UploadFile, Form
-from pydantic import BaseModel
+import fastapi
+from fastapi import APIRouter, Form, File
+from fastapi.responses import HTMLResponse
 from fastapi_chameleon import template
 
-from pdm_project_one.program.program import create_artwork
+from starlette.requests import Request
 
+# from pdm_project_one.library.program import create_artwork
+from api.viewmodels import DesignViewModel
+from library.program import create_artwork
 
 router = APIRouter()
-
-
-class ImageFile(BaseModel):
-    file: UploadFile = File(...)
 
 
 @router.get("/")
@@ -20,12 +20,23 @@ def index(user: str = "anon"):
 
 @router.get("/designer")
 @template(template_file="designer/designer.pt")
-def designer():
-    return {}
+async def designer(request: Request):
+    vm = DesignViewModel(request)
+    return vm.to_dict()
 
 
-@router.post("/designer/output")
-@template(template_file="designer/output.pt")
-def designer_output(file: ImageFile, text: str = ""):
-    artwork = create_artwork(file, text)
-    return artwork
+@router.post("/designer")
+@template()
+async def designer(request: Request):
+    vm = DesignViewModel(request)
+    await vm.load()
+
+    artwork = create_artwork(vm.final_text, vm.final_image)
+
+    resp = fastapi.responses.FileResponse()
+
+
+# @router.post("/designer/new", response_class=HTMLResponse)
+# @template(template_file="designer/output.pt")
+# def designer_output(file: File(...), text: str = Form(...)):
+#     return {"file": file, "text": text}

@@ -2,7 +2,7 @@
 import sys
 from pathlib import Path
 
-from program import imgtools
+from library import imgtools
 
 
 def create_artwork(text_input: str, img_url_input: Path):  # sourcery skip: inline-immediately-returned-variable

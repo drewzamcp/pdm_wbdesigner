@@ -4,14 +4,14 @@ import uvicorn
 from starlette.staticfiles import StaticFiles
 
 from pdm_project_one.settings import TEMPLATE_FLDR, STATIC_FLDR
-from views import router
+from pdm_project_one.api.views import router
 
 app = fastapi.FastAPI()
 
 
 def main():
     configure()
-    uvicorn.run(app)
+    uvicorn.run(app, debug=True)
 
 
 def configure():

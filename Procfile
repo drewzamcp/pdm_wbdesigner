@@ -1,0 +1,1 @@
+web: gunicorn --worker-tmp-dir /dev/shm --config gunicorn.conf.py pdm_project_one.api.main:app
