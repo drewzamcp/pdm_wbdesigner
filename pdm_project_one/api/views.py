@@ -25,15 +25,17 @@ async def designer(request: Request):
     return vm.to_dict()
 
 
-# @router.post("/designer")
-# @template()
-# async def designer(request: Request):
-#     vm = DesignViewModel(request)
-#     await vm.load()
-#
-#     artwork = create_artwork(vm.final_text, vm.final_image)
-#
-#     resp = fastapi.responses.FileResponse()
+@router.post("/designer")
+@template()
+async def designer(request: Request):
+    vm = DesignViewModel(request)
+    await vm.load()
+
+    artwork = create_artwork(vm.final_text, vm.final_image)
+
+    resp = fastapi.responses.FileResponse(artwork)
+
+    return resp
 
 
 # @router.post("/designer/new", response_class=HTMLResponse)

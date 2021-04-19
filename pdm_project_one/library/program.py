@@ -36,5 +36,3 @@ def wristband_image(img_path, input_text: str):
     return imgtools.add_text_image(transparent_image, input_text)
 
 
-# if __name__ == "__main__":
-#     main()
