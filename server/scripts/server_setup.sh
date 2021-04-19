@@ -22,9 +22,9 @@ ufw enable
 
 
 apt install acl -y
-useradd -M apiuser
-usermod -L apiuser
-setfacl -m u:apiuser:rwx /apps/logs/weather_api
+useradd -M wbduser
+usermod -L wbduser
+setfacl -m u:wbduser:rwx /apps/logs/wbdesigner
 
 
 # Web app file structure
