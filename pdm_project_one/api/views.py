@@ -6,8 +6,8 @@ from fastapi_chameleon import template
 from starlette.requests import Request
 
 # from pdm_project_one.library.program import create_artwork
-from api.viewmodels import DesignViewModel
-from library.program import create_artwork
+from pdm_project_one.api.viewmodels import DesignViewModel
+from pdm_project_one.library.program import create_artwork
 
 router = APIRouter()
 
