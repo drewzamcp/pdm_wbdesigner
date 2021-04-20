@@ -31,26 +31,23 @@ setfacl -m u:wbduser:rwx /apps/logs/wbdesigner
 mkdir /apps
 chmod 777 /apps
 mkdir /apps/logs
-mkdir /apps/logs/weather_api
-mkdir /apps/logs/weather_api/app_log
+mkdir /apps/logs/wbdesigner
+mkdir /apps/logs/wbdesigner/app_log
 # chmod 777 /apps/logs/weather_api
 cd /apps
 
 # Create a virtual env for the app.
-cd /apps
-python3 -m venv venv
-source /apps/venv/bin/activate
-pip install --upgrade pip setuptools wheel
-pip install --upgrade httpie glances
-pip install --upgrade gunicorn uvloop httptools
+# Make sure pyenv is installed and correct version in 'local'
+cd /apps/wbdesigner
+poetry shell
 
 # clone the repo:
 cd /apps
-git clone https://github.com/talkpython/modern-apis-with-fastapi app_repo
+git clone https://github.com/drewzamcp/pdm_project_one.git wbdesigner
 
 # Setup the web app:
-cd /apps/app_repo/ch08-deployment
-pip install -r requirements.txt
+cd /apps/wbdesigner/
+poetry install --no-dev
 
 # Copy and enable the daemon
 cp /apps/wbdesigner/server/units/wbdesigner.service /etc/systemd/system/
@@ -65,7 +62,7 @@ apt install nginx
 # CAREFUL HERE. If you are using default, maybe skip this
 rm /etc/nginx/sites-enabled/default
 
-cp /apps/app_repo/ch08-deployment/server/nginx/weather.nginx /etc/nginx/sites-enabled/
+cp /apps/wbdesigner/server/nginx/wbdesigner.nginx /etc/nginx/sites-enabled/
 update-rc.d nginx enable
 service nginx restart
 
@@ -75,4 +72,4 @@ service nginx restart
 
 add-apt-repository ppa:certbot/certbot
 apt install python3-certbot-nginx
-certbot --nginx -d weatherapi.talkpython.com
+certbot --nginx -d wbdesigner.com
