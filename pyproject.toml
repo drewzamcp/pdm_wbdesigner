@@ -14,6 +14,11 @@ uvicorn = "^0.13.4"
 Chameleon = "^3.9.0"
 aiofiles = "^0.6.0"
 python-multipart = "^0.0.5"
+gunicorn = "^20.1.0"
+uvloop = "^0.15.2"
+httptools = "^0.1.1"
+httpie = "^2.4.0"
+Glances = "^3.1.6"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
