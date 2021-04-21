@@ -20,6 +20,8 @@ httptools = "^0.1.1"
 httpie = "^2.4.0"
 Glances = "^3.1.6"
 
+fastapi-chameleon = { git = "https://github.com/mikeckennedy/fastapi-chameleon.git", branch = "main"}
+
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
 black = "^20.8b1"

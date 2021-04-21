@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name 'doIP'; # TODO: register correct IP
+    server_name waggle.co.za 206.189.9.18; # TODO: register correct IP
     server_tokens off;
     charset utf-8;
 
