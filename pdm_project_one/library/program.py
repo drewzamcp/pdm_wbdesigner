@@ -5,7 +5,7 @@ from pathlib import Path
 from pdm_project_one.library import imgtools
 
 
-def create_artwork(text_input: str, img_url_input: Path):  # sourcery skip: inline-immediately-returned-variable
+def create_artwork(text_input: str, img_url_input):  # sourcery skip: inline-immediately-returned-variable
     # text_input = input("Enter text for wristband: ")
     # img_url_input = input("Enter path to image: ")
 
