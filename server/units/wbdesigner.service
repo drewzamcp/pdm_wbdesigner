@@ -4,14 +4,15 @@ After=syslog.target
 
 [Service]
 User=wbduser
-WorkingDirectory=/apps/wbdesigner/
+WorkingDirectory=/apps/wbdesigner/pdm_project_one/
 Environment="PATH=/apps/wbdesigner/.venv/bin"
-ExecStart=/apps/wbdesigner/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:main --name designer_svc --access-logfile /apps/logs/wbdesigner/access.log --error-logfile /apps/logs/wbdesigner/errors.log --user wbduser
+ExecStart=/apps/wbdesigner/pdm_project_one/poetry run python main.py --user wbduser
+#ExecStart=/apps/wbdesigner/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker main:main --name designer_svc --access-logfile /apps/logs/wbdesigner/access.log --error-logfile /apps/logs/wbdesigner/errors.log --user wbduser
 Restart=always
 Type=notify
 StandardError=syslog
 NotifyAccess=all
-RuntimeDirectory=/apps/wbdesigner/pdm_project_one
+#RuntimeDirectory=/apps/wbdesigner/pdm_project_one
 
 
 [Install]
