@@ -3,25 +3,15 @@ Description=gunicorn uvicorn service for Wristband Designer
 After=syslog.target
 
 [Service]
-
 User=wbduser
-RuntimeDirectory=gunicorn
-WorkingDirectory=/apps/wbdesigner/pdm_project_one
+WorkingDirectory=/apps/wbdesigner/
 Environment="PATH=/apps/wbdesigner/.venv/bin"
 ExecStart=/apps/wbdesigner/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker main:app>
 Restart=always
 Type=notify
 StandardError=syslog
 NotifyAccess=all
-ExecStart=/apps/wbdesigner/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker main:app --access-logfile /apps/logs/wbdesigner/access.log --error-logfile /apps/logs/wbdesigner/errors.log --user wbduser
-# \/ \/ <- Added post recording for better restart perf.
-# ExecReload=/bin/kill -s HUP $MAINPID
-# KillMode=mixed
-# TimeoutStopSec=5
-# PrivateTmp=true
-# /\ /\ <- Added post recording for better restart perf.
-
-# Requires systemd version 211 or newer
+ExecStart=/apps/wbdesigner/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker main:app --name designer_svc --access-logfile /apps/logs/wbdesigner/access.log --error-logfile /apps/logs/wbdesigner/errors.log --user wbduser
 RuntimeDirectory=/apps/wbdesigner/pdm_project_one
 Restart=always
 Type=notify
