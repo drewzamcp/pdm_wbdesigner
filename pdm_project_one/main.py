@@ -11,7 +11,7 @@ app = fastapi.FastAPI()
 
 def main():
     configure()
-    uvicorn.run(app, debug=True)
+    uvicorn.run(app)
 
 
 def configure():

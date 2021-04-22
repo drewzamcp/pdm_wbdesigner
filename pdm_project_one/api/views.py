@@ -20,7 +20,7 @@ def index(user: str = "anon"):
 
 @router.get("/designer")
 @template(template_file="designer/designer.pt")
-async def designer(request: Request):
+def designer(request: Request):
     vm = DesignViewModel(request)
     return vm.to_dict()
 
