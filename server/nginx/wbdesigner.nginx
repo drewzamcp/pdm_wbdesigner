@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name waggle.co.za 206.189.9.18; # TODO: register correct IP
+    server_name 206.189.9.18;
     server_tokens off;
     charset utf-8;
 
@@ -9,6 +9,13 @@ server {
         gzip_buffers    8 256k;
 
         alias /apps/wbdesigner/static;
+        expires 365d;
+    }
+    location /templates {
+        gzip            on;
+        gzip_buffers    8 256k;
+
+        alias /apps/wbdesigner/templates;
         expires 365d;
     }
     location / {
