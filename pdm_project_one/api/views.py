@@ -27,9 +27,9 @@ def designer(request: Request):
 
 @router.post("/designer")
 @template(template_file="designer/designer.pt")
-async def designer(request: Request):
+def designer(request: Request):
     vm = DesignViewModel(request)
-    await vm.load()
+    vm.load()
 
     artwork = create_artwork(vm.final_text, vm.final_image)
 
