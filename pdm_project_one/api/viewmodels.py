@@ -28,3 +28,4 @@ class DesignViewModel(ViewModelBase):
             self.final_text = form.get('wbtext').upper().strip()
             self.final_image = form.get('upload-file')
 
+
