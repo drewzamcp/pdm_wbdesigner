@@ -15,16 +15,17 @@ class ViewModelBase:
 
 class DesignViewModel(ViewModelBase):
 
-    def __init__(self, request: Request) -> object:
+    def __init__(self, request: Request):
         super().__init__(request)
 
         self.email = ''
         self.final_text = ''
         self.final_image = None
 
-    def load(self):
-        form = self.request.form()
-        # self.email = form.get('email').lower().strip()
-        self.final_text = form.get('wbtext').upper().strip()
-        self.final_image = form.get('upload-file')
-        return {'text': self.final_text, 'image': self.final_image}
+        def load():
+            form = self.request.form()
+            self.email = form.get('email').lower().strip()
+            self.final_text = form.get('wbtext').upper().strip()
+            self.final_image = form.get('upload-file')
+
+
