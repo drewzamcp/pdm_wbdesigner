@@ -2,12 +2,11 @@ import fastapi
 from fastapi import APIRouter, Form, File
 from fastapi.responses import HTMLResponse
 from fastapi_chameleon import template
-
 from starlette.requests import Request
+from starlette import status
 
-# from pdm_project_one.library.program import create_artwork
 from pdm_project_one.api.viewmodels import DesignViewModel
-from pdm_project_one.library.program import create_artwork
+from pdm_project_one.library import imguploads
 
 router = APIRouter()
 
@@ -25,20 +24,25 @@ def designer(request: Request):
     return vm.to_dict()
 
 
-@router.post("/designer")
-@template(template_file="designer/designer.pt")
+@router.post("/designer/upload")
+@template(template_file="designer/output.pt")
 def designer(request: Request):
     vm = DesignViewModel(request)
     vm.load()
 
-    artwork = create_artwork(vm.final_text, vm.final_image)
+    if vm.error:
+        return vm.to_dict()
 
-    resp = fastapi.responses.FileResponse(artwork)
+    tmp_file_path = imguploads.save_upload_file_tmp(vm.final_image)
+    print(tmp_file_path)
+    # artwork = create_artwork(vm.final_text, tmp_file_path)
+
+    resp = fastapi.responses.RedirectResponse('/designer/upload', status_code=status.HTTP_302_FOUND)
 
     return resp
 
 
-# @router.post("/designer/new", response_class=HTMLResponse)
-# @template(template_file="designer/output.pt")
-# def designer_output(file: File(...), text: str = Form(...)):
-#     return {"file": file, "text": text}
+@router.post("/designer/new", response_class=HTMLResponse)
+@template(template_file="designer/output.pt")
+def designer_output(file: File(...), text: str = Form(...)):
+    return {"file": file, "text": text}
