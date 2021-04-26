@@ -57,4 +57,3 @@ def add_text_image(image: Image, text: str):
     base_layer.save(f"{IMG_OUTPUT_FLDR}/tmp_joined.png")
 
     return base_layer
-

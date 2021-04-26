@@ -22,10 +22,8 @@ class DesignViewModel(ViewModelBase):
         self.final_text = ''
         self.final_image = None
 
-    def load():
-        form = self.request.form()
+    async def load(self):
+        form = await self.request.form()
         self.email = form.get('email').lower().strip()
         self.final_text = form.get('wbtext').upper().strip()
         self.final_image = form.get('upload-file')
-
-
