@@ -1,5 +1,8 @@
+import os
+import shutil
+
 import fastapi
-from fastapi import APIRouter, Form, File
+from fastapi import APIRouter, Form, File, UploadFile
 from fastapi.responses import HTMLResponse
 from fastapi_chameleon import template
 from starlette.requests import Request
@@ -7,6 +10,7 @@ from starlette import status
 
 from pdm_project_one.api.viewmodels import DesignViewModel
 from pdm_project_one.library import imguploads
+from pdm_project_one.settings import UPLOADS_FLDR
 
 router = APIRouter()
 
@@ -37,12 +41,21 @@ def designer(request: Request):
     print(tmp_file_path)
     # artwork = create_artwork(vm.final_text, tmp_file_path)
 
-    resp = fastapi.responses.RedirectResponse('/designer/upload', status_code=status.HTTP_302_FOUND)
+    resp = fastapi.responses.FileResponse(tmp_file_path)
 
     return resp
 
 
-@router.post("/designer/new", response_class=HTMLResponse)
-@template(template_file="designer/output.pt")
-def designer_output(file: File(...), text: str = Form(...)):
-    return {"file": file, "text": text}
+@router.post("/files/upload")
+def create_file(file: UploadFile = File(...)):
+    file_object = file.file
+    # create empty file to copy the file_object to
+    upload_folder = open(os.path.join(UPLOADS_FLDR, file.filename), 'wb+')
+    shutil.copyfileobj(file_object, upload_folder)
+    upload_folder.close()
+    return {"filename": file.filename}
+
+# @router.post("/designer/new", response_class=HTMLResponse)
+# @template(template_file="designer/output.pt")
+# def designer_output(file: File(...), text: str = Form(...)):
+#     return {"file": file, "text": text}
