@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
-command = '/Users/drewmac/webdev/pdm_project_one/.venv/bin/gunicorn'
-pythonpath = '/Users/drewmac/webdev/pdm_project_one/pdm_project_one/'
+command = '/apps/wbdesigner/.venv/bin/gunicorn'
 bind = '127.0.0.1:8000'
-workers = 2
+workers = 4
 worker_class = 'uvicorn.workers.UvicornWorker'
-user = 'drewmac'
-chdir = '/Users/drewmac/webdev/pdm_project_one/pdm_project_one'
+user = 'wbduser'
+chdir = '/apps/wbdesigner/pdm_project_one'
