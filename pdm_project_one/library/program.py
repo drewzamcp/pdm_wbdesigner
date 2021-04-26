@@ -5,16 +5,16 @@ from pathlib import Path
 from pdm_project_one.library import imgtools
 
 
-def create_artwork(text_input: str, img_url_input):  # sourcery skip: inline-immediately-returned-variable
+def create_artwork(text_input: str, input_img_url: Path):  # sourcery skip: inline-immediately-returned-variable
     # text_input = input("Enter text for wristband: ")
     # img_url_input = input("Enter path to image: ")
 
-    if not Path(img_url_input).exists():
-        print(f"Cannot find file path: {img_url_input}")
+    if not Path(input_img_url).exists():
+        print(f"Cannot find file path: {input_img_url}")
         sys.exit(1)
 
     transparent_img = wristband_image(
-        img_url_input,
+        input_img_url,
         text_input,
     )
 
