@@ -1,6 +1,6 @@
 import fastapi
 from fastapi import APIRouter, Form, File
-from fastapi.responses import HTMLResponse
+from fastapi.responses import FileResponse
 from fastapi_chameleon import template
 
 from starlette.requests import Request
@@ -8,6 +8,8 @@ from starlette.requests import Request
 # from pdm_project_one.library.program import create_artwork
 from pdm_project_one.api.viewmodels import DesignViewModel
 from pdm_project_one.library.program import create_artwork
+from pdm_project_one.library.imgtools import save_upload_file_tmp
+from pdm_project_one.settings import IMG_OUTPUT_FLDR
 
 router = APIRouter()
 
@@ -25,20 +27,16 @@ def designer(request: Request):
     return vm.to_dict()
 
 
-@router.post("/designer")
-@template(template_file="designer/designer.pt")
-def designer(request: Request):
+@router.post("/designer/output")
+@template(template_file="designer/output.pt")
+async def designer(request: Request):
     vm = DesignViewModel(request)
-    vm.load()
+    await vm.load()
 
-    artwork = create_artwork(vm.final_text, vm.final_image)
+    save_img = save_upload_file_tmp(vm.final_image)
+    wb_text = vm.final_text
 
-    resp = fastapi.responses.FileResponse(artwork)
+    artwork = create_artwork(wb_text, save_img)
+    output_img = f"{IMG_OUTPUT_FLDR}/tmp_joined.png"
 
-    return resp
-
-
-# @router.post("/designer/new", response_class=HTMLResponse)
-# @template(template_file="designer/output.pt")
-# def designer_output(file: File(...), text: str = Form(...)):
-#     return {"file": file, "text": text}
+    return FileResponse(output_img)

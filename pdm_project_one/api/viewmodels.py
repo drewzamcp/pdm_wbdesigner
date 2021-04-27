@@ -26,4 +26,5 @@ class DesignViewModel(ViewModelBase):
         form = await self.request.form()
         self.email = form.get('email').lower().strip()
         self.final_text = form.get('wbtext').upper().strip()
-        self.final_image = form.get('upload-file')
+        self.final_image = form['upload-file']
+

@@ -3,6 +3,7 @@
     <div metal:fill-slot="content" tal:omit-tag="True">
 
         <h1>File Output</h1>
+        <p>Email: ${image}</p>
 
     </div>
 
