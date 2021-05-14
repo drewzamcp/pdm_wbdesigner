@@ -12,8 +12,10 @@ Stay posted for more updates
 
 This application has been packaged with Poetry. To get this running:
 
-Clone this repo
-Make sure `poetry` has been installed
-Open the project directory and run `poetry install`
-Configure your `.env_example`
+- Clone this repo
+- Make sure `poetry` has been installed
+- Open the project directory and run `poetry install`
+- Configure your `.env_example`
+
+
 
