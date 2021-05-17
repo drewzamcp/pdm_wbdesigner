@@ -31,5 +31,3 @@ def configure_routes():
 
 if __name__ == "__main__":
     main()
-else:
-    configure(dev_mode=False)
