@@ -10,23 +10,26 @@ app = fastapi.FastAPI()
 
 
 def main():
-    configure()
-    uvicorn.run(app)
+    configure(dev_mode=True)
+    uvicorn.run(app, host='127.0.0.1', port=8000, debug=True)
 
 
-def configure():
-    app.mount("/static", StaticFiles(directory=STATIC_FLDR), name="static")
+def configure(dev_mode: bool):
+    configure_templates(dev_mode)
     configure_routes()
-    configure_templates()
+
+
+def configure_templates(dev_mode: bool):
+    fastapi_chameleon.global_init(f"{TEMPLATE_FLDR}")
 
 
 def configure_routes():
+    # TODO: could use Mike's decorator package fastapi_chameleon
+    app.mount("/static", StaticFiles(directory=STATIC_FLDR), name="static")
     app.include_router(router)
-
-
-def configure_templates():
-    fastapi_chameleon.global_init(f"{TEMPLATE_FLDR}")
 
 
 if __name__ == "__main__":
     main()
+else:
+    configure(dev_mode=False)
