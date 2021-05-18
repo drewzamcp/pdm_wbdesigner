@@ -62,7 +62,7 @@ apt install nginx
 # CAREFUL HERE. If you are using default, maybe skip this
 rm /etc/nginx/sites-enabled/default
 
-cp /apps/wbdesigner/server/nginx/wbdesigner.nginx /etc/nginx/sites-enabled/
+cp /home/azwerd/webapp/server/nginx/wbdesigner.nginx /etc/nginx/sites-enabled/
 update-rc.d nginx enable
 service nginx restart
 
