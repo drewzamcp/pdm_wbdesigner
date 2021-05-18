@@ -11,13 +11,6 @@ server {
         alias $HOME/webapp/static;
         expires 365d;
     }
-    location /static {
-        gzip            on;
-        gzip_buffers    8 256k;
-
-        alias $HOME/webapp/static;
-        expires 365d;
-    }
     location / {
         try_files $uri @yourapplication;
     }

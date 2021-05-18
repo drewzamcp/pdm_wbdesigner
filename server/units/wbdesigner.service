@@ -3,7 +3,13 @@ Description=gunicorn uvicorn service for Wristband Designer
 After=syslog.target
 
 [Service]
-ExecStart=$HOME/webapp/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir $HOME/webapp/pdm_project_one --access-logfile /webapp/logs/wbdesigner/access.log --error-logfile /webapp/logs/wbdesigner/errors.log --user azwerd
+ExecStart=$HOME/webapp/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 2 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir $HOME/webapp/pdm_project_one --access-logfile /webapp/logs/wbdesigner/access.log --error-logfile /webapp/logs/wbdesigner/errors.log --user azwerd
+
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+RuntimeDirectory=$HOME/webapp/pdm_project_one
 Restart=always
 Type=notify
 StandardError=syslog

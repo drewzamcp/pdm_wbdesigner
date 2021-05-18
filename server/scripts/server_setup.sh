@@ -23,8 +23,8 @@ ufw enable
 
 apt install acl -y
 useradd -M wbduser
-usermod -L wbduser
-setfacl -m u:azwerd:rwx $HOME/webapp/logs/wbdesigner
+sudo usermod -L wbduser
+sudo setfacl -m u:azwerd:rwx $HOME/webapp/logs/wbdesigner
 
 
 # Web app file structure
