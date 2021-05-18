@@ -3,7 +3,7 @@ Description=gunicorn uvicorn service for Wristband Designer
 After=syslog.target
 
 [Service]
-ExecStart=/home/azwerd/webapp/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir /home/azwerd/webapp/pdm_project_one --user azwerd
+ExecStart=$HOME/webapp/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir $HOME/webapp/pdm_project_one --access-logfile /webapp/logs/wbdesigner/access.log --error-logfile /webapp/logs/wbdesigner/errors.log --user azwerd
 Restart=always
 Type=notify
 StandardError=syslog
@@ -11,8 +11,3 @@ NotifyAccess=all
 
 [Install]
 WantedBy=multi-user.target
-
-
-# /Users/azwerd/webdev/pdm_project_one/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir /home/azwerd/webapp/pdm_project_one --access-logfile /webapp/logs/wbdesigner/access.log --error-logfile /webapp/logs/wbdesigner/errors.log --user azwerd
-
-# /home/azwerd/webapp/.venv/bin/gunicorn -b 127.0.0.1:8000 -w 4 -k uvicorn.workers.UvicornWorker pdm_project_one.main:configure --name designer_svc --chdir /home/azwerd/webapp/pdm_project_one --user azwerd
