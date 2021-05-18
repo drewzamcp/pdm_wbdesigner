@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name waggle.co.za www.waggle.co.za;
+    server_name waggle.co.za www.waggle.co.za 143.110.183.219;
     server_tokens off;
     charset utf-8;
 
