@@ -16,7 +16,7 @@ This application has been packaged with Poetry. To get this running:
 - Make sure `poetry` has been installed
 - Open the project directory and run `poetry install`
 - Configure your `.env_example`
-- Start the server running `uvicorn pdm_project_one.main:main` from within the main project directory
+- Start the server running `uvicorn pdm_project_one.main:configure` from within the main project directory
 
 
 
