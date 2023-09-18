@@ -1,7 +1,7 @@
-# PDM Project One: Wristband artwork designer. 
+# Wristband artwork designer. 
 
 A printed Tyvek wristband designer for creating black and white artwork
-for printing. 
+for printing 10UP Tyvek bands. 
 
 It uses Python, Pillow, Weazy Print and the plan is to deploy it as a FastApi
 web application.
